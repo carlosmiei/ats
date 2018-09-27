@@ -20,24 +20,24 @@ public class ATSParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, STRING=9, 
-		DATA=10, DIGIT=11, NUM=12, DECIMAL=13, WS=14;
+		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
+		STRING=10, DATA=11, DIGIT=12, NUM=13, DECIMAL=14, WS=15;
 	public static final int
 		RULE_actions = 0, RULE_action = 1, RULE_registo = 2, RULE_registarCondutor = 3, 
 		RULE_registarCliente = 4, RULE_registarEmpresa = 5, RULE_login = 6, RULE_posicao = 7, 
-		RULE_log = 8;
+		RULE_logout = 8, RULE_log = 9;
 	public static final String[] ruleNames = {
 		"actions", "action", "registo", "registarCondutor", "registarCliente", 
-		"registarEmpresa", "login", "posicao", "log"
+		"registarEmpresa", "login", "posicao", "logout", "log"
 	};
 
 	private static final String[] _LITERAL_NAMES = {
 		null, "';'", "'registar condutor'", "'registar cliente'", "'registar empresa'", 
-		"'login'", "'('", "','", "')'"
+		"'login'", "'('", "','", "')'", "'logout'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, null, null, null, null, null, null, null, null, "STRING", "DATA", 
-		"DIGIT", "NUM", "DECIMAL", "WS"
+		null, null, null, null, null, null, null, null, null, null, "STRING", 
+		"DATA", "DIGIT", "NUM", "DECIMAL", "WS"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -118,26 +118,26 @@ public class ATSParser extends Parser {
 		ActionsContext _localctx = new ActionsContext(_ctx, getState());
 		enterRule(_localctx, 0, RULE_actions);
 		try {
-			setState(25);
+			setState(27);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,0,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(18);
-				action();
-				setState(19);
-				match(T__0);
 				setState(20);
+				action();
+				setState(21);
+				match(T__0);
+				setState(22);
 				actions();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(22);
+				setState(24);
 				action();
-				setState(23);
+				setState(25);
 				match(T__0);
 				}
 				break;
@@ -161,6 +161,9 @@ public class ATSParser extends Parser {
 		public LoginContext login() {
 			return getRuleContext(LoginContext.class,0);
 		}
+		public LogoutContext logout() {
+			return getRuleContext(LogoutContext.class,0);
+		}
 		public ActionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -171,7 +174,7 @@ public class ATSParser extends Parser {
 		ActionContext _localctx = new ActionContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_action);
 		try {
-			setState(29);
+			setState(32);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__1:
@@ -179,15 +182,22 @@ public class ATSParser extends Parser {
 			case T__3:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(27);
+				setState(29);
 				registo();
 				}
 				break;
 			case T__4:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(28);
+				setState(30);
 				login();
+				}
+				break;
+			case T__8:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(31);
+				logout();
 				}
 				break;
 			default:
@@ -225,27 +235,27 @@ public class ATSParser extends Parser {
 		RegistoContext _localctx = new RegistoContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_registo);
 		try {
-			setState(34);
+			setState(37);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(31);
+				setState(34);
 				registarCondutor();
 				}
 				break;
 			case T__2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(32);
+				setState(35);
 				registarCliente();
 				}
 				break;
 			case T__3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(33);
+				setState(36);
 				registarEmpresa();
 				}
 				break;
@@ -288,25 +298,25 @@ public class ATSParser extends Parser {
 		RegistarCondutorContext _localctx = new RegistarCondutorContext(_ctx, getState());
 		enterRule(_localctx, 6, RULE_registarCondutor);
 		try {
-			setState(53);
+			setState(56);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(36);
-				match(T__1);
-				setState(37);
-				((RegistarCondutorContext)_localctx).email = match(STRING);
-				setState(38);
-				((RegistarCondutorContext)_localctx).name = match(STRING);
 				setState(39);
-				((RegistarCondutorContext)_localctx).pass = match(STRING);
+				match(T__1);
 				setState(40);
-				((RegistarCondutorContext)_localctx).rua = match(STRING);
+				((RegistarCondutorContext)_localctx).email = match(STRING);
 				setState(41);
-				((RegistarCondutorContext)_localctx).dat = match(DATA);
+				((RegistarCondutorContext)_localctx).name = match(STRING);
 				setState(42);
+				((RegistarCondutorContext)_localctx).pass = match(STRING);
+				setState(43);
+				((RegistarCondutorContext)_localctx).rua = match(STRING);
+				setState(44);
+				((RegistarCondutorContext)_localctx).dat = match(DATA);
+				setState(45);
 				((RegistarCondutorContext)_localctx).comp = match(NUM);
 
 
@@ -321,21 +331,21 @@ public class ATSParser extends Parser {
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(44);
-				match(T__1);
-				setState(45);
-				((RegistarCondutorContext)_localctx).email = match(STRING);
-				setState(46);
-				((RegistarCondutorContext)_localctx).name = match(STRING);
 				setState(47);
-				((RegistarCondutorContext)_localctx).pass = match(STRING);
+				match(T__1);
 				setState(48);
-				((RegistarCondutorContext)_localctx).rua = match(STRING);
+				((RegistarCondutorContext)_localctx).email = match(STRING);
 				setState(49);
-				((RegistarCondutorContext)_localctx).dat = match(DATA);
+				((RegistarCondutorContext)_localctx).name = match(STRING);
 				setState(50);
-				((RegistarCondutorContext)_localctx).comp = match(NUM);
+				((RegistarCondutorContext)_localctx).pass = match(STRING);
 				setState(51);
+				((RegistarCondutorContext)_localctx).rua = match(STRING);
+				setState(52);
+				((RegistarCondutorContext)_localctx).dat = match(DATA);
+				setState(53);
+				((RegistarCondutorContext)_localctx).comp = match(NUM);
+				setState(54);
 				((RegistarCondutorContext)_localctx).emp = match(STRING);
 
 
@@ -387,19 +397,19 @@ public class ATSParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(55);
-			match(T__2);
-			setState(56);
-			((RegistarClienteContext)_localctx).email = match(STRING);
-			setState(57);
-			((RegistarClienteContext)_localctx).name = match(STRING);
 			setState(58);
-			((RegistarClienteContext)_localctx).pass = match(STRING);
+			match(T__2);
 			setState(59);
-			((RegistarClienteContext)_localctx).rua = match(STRING);
+			((RegistarClienteContext)_localctx).email = match(STRING);
 			setState(60);
-			((RegistarClienteContext)_localctx).dat = match(DATA);
+			((RegistarClienteContext)_localctx).name = match(STRING);
 			setState(61);
+			((RegistarClienteContext)_localctx).pass = match(STRING);
+			setState(62);
+			((RegistarClienteContext)_localctx).rua = match(STRING);
+			setState(63);
+			((RegistarClienteContext)_localctx).dat = match(DATA);
+			setState(64);
 			((RegistarClienteContext)_localctx).p = posicao();
 
 			                      LocalDate localDate = LocalDate.parse((((RegistarClienteContext)_localctx).dat!=null?((RegistarClienteContext)_localctx).dat.getText():null));
@@ -440,11 +450,11 @@ public class ATSParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(64);
+			setState(67);
 			match(T__3);
-			setState(65);
+			setState(68);
 			((RegistarEmpresaContext)_localctx).nome = match(STRING);
-			setState(66);
+			setState(69);
 			((RegistarEmpresaContext)_localctx).pass = match(STRING);
 
 
@@ -484,15 +494,15 @@ public class ATSParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(69);
+			setState(72);
 			match(T__4);
-			setState(70);
+			setState(73);
 			((LoginContext)_localctx).nome = match(STRING);
-			setState(71);
+			setState(74);
 			((LoginContext)_localctx).pass = match(STRING);
 
 
-			                    System.out.println("entrei login");
+
 			                    String result = umer.loginUmer((((LoginContext)_localctx).nome!=null?((LoginContext)_localctx).nome.getText():null),(((LoginContext)_localctx).pass!=null?((LoginContext)_localctx).pass.getText():null));
 
 			                    if (result != null) {
@@ -535,21 +545,50 @@ public class ATSParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(74);
-			match(T__5);
-			setState(75);
-			((PosicaoContext)_localctx).prim = match(DECIMAL);
-			setState(76);
-			match(T__6);
 			setState(77);
-			((PosicaoContext)_localctx).seg = match(DECIMAL);
+			match(T__5);
 			setState(78);
+			((PosicaoContext)_localctx).prim = match(DECIMAL);
+			setState(79);
+			match(T__6);
+			setState(80);
+			((PosicaoContext)_localctx).seg = match(DECIMAL);
+			setState(81);
 			match(T__7);
 
 
 			              Point2D.Double po = new Point2D.Double();
 			              po.setLocation(Double.parseDouble((((PosicaoContext)_localctx).prim!=null?((PosicaoContext)_localctx).prim.getText():null)),Double.parseDouble((((PosicaoContext)_localctx).seg!=null?((PosicaoContext)_localctx).seg.getText():null)));
 			              ((PosicaoContext)_localctx).pos = po;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class LogoutContext extends ParserRuleContext {
+		public LogoutContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_logout; }
+	}
+
+	public final LogoutContext logout() throws RecognitionException {
+		LogoutContext _localctx = new LogoutContext(_ctx, getState());
+		enterRule(_localctx, 16, RULE_logout);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(84);
+			match(T__8);
+			key=null;cla=null;
 			}
 		}
 		catch (RecognitionException re) {
@@ -573,11 +612,11 @@ public class ATSParser extends Parser {
 
 	public final LogContext log() throws RecognitionException {
 		LogContext _localctx = new LogContext(_ctx, getState());
-		enterRule(_localctx, 16, RULE_log);
+		enterRule(_localctx, 18, RULE_log);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(81);
+			setState(87);
 			match(EOF);
 			}
 		}
@@ -593,26 +632,27 @@ public class ATSParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\20V\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\3\2\3\2\3\2"+
-		"\3\2\3\2\3\2\3\2\5\2\34\n\2\3\3\3\3\5\3 \n\3\3\4\3\4\3\4\5\4%\n\4\3\5"+
-		"\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\5\58"+
-		"\n\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\7\3\7\3\7\3\7\3\7\3\b\3\b\3"+
-		"\b\3\b\3\b\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\n\3\n\3\n\2\2\13\2\4\6\b\n\f"+
-		"\16\20\22\2\2\2Q\2\33\3\2\2\2\4\37\3\2\2\2\6$\3\2\2\2\b\67\3\2\2\2\n9"+
-		"\3\2\2\2\fB\3\2\2\2\16G\3\2\2\2\20L\3\2\2\2\22S\3\2\2\2\24\25\5\4\3\2"+
-		"\25\26\7\3\2\2\26\27\5\2\2\2\27\34\3\2\2\2\30\31\5\4\3\2\31\32\7\3\2\2"+
-		"\32\34\3\2\2\2\33\24\3\2\2\2\33\30\3\2\2\2\34\3\3\2\2\2\35 \5\6\4\2\36"+
-		" \5\16\b\2\37\35\3\2\2\2\37\36\3\2\2\2 \5\3\2\2\2!%\5\b\5\2\"%\5\n\6\2"+
-		"#%\5\f\7\2$!\3\2\2\2$\"\3\2\2\2$#\3\2\2\2%\7\3\2\2\2&\'\7\4\2\2\'(\7\13"+
-		"\2\2()\7\13\2\2)*\7\13\2\2*+\7\13\2\2+,\7\f\2\2,-\7\16\2\2-8\b\5\1\2."+
-		"/\7\4\2\2/\60\7\13\2\2\60\61\7\13\2\2\61\62\7\13\2\2\62\63\7\13\2\2\63"+
-		"\64\7\f\2\2\64\65\7\16\2\2\65\66\7\13\2\2\668\b\5\1\2\67&\3\2\2\2\67."+
-		"\3\2\2\28\t\3\2\2\29:\7\5\2\2:;\7\13\2\2;<\7\13\2\2<=\7\13\2\2=>\7\13"+
-		"\2\2>?\7\f\2\2?@\5\20\t\2@A\b\6\1\2A\13\3\2\2\2BC\7\6\2\2CD\7\13\2\2D"+
-		"E\7\13\2\2EF\b\7\1\2F\r\3\2\2\2GH\7\7\2\2HI\7\13\2\2IJ\7\13\2\2JK\b\b"+
-		"\1\2K\17\3\2\2\2LM\7\b\2\2MN\7\17\2\2NO\7\t\2\2OP\7\17\2\2PQ\7\n\2\2Q"+
-		"R\b\t\1\2R\21\3\2\2\2ST\7\2\2\3T\23\3\2\2\2\6\33\37$\67";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\21\\\4\2\t\2\4\3"+
+		"\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13"+
+		"\3\2\3\2\3\2\3\2\3\2\3\2\3\2\5\2\36\n\2\3\3\3\3\3\3\5\3#\n\3\3\4\3\4\3"+
+		"\4\5\4(\n\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3"+
+		"\5\3\5\3\5\5\5;\n\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\7\3\7\3\7\3"+
+		"\7\3\7\3\b\3\b\3\b\3\b\3\b\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\n\3\n\3\n\3\13"+
+		"\3\13\3\13\2\2\f\2\4\6\b\n\f\16\20\22\24\2\2\2W\2\35\3\2\2\2\4\"\3\2\2"+
+		"\2\6\'\3\2\2\2\b:\3\2\2\2\n<\3\2\2\2\fE\3\2\2\2\16J\3\2\2\2\20O\3\2\2"+
+		"\2\22V\3\2\2\2\24Y\3\2\2\2\26\27\5\4\3\2\27\30\7\3\2\2\30\31\5\2\2\2\31"+
+		"\36\3\2\2\2\32\33\5\4\3\2\33\34\7\3\2\2\34\36\3\2\2\2\35\26\3\2\2\2\35"+
+		"\32\3\2\2\2\36\3\3\2\2\2\37#\5\6\4\2 #\5\16\b\2!#\5\22\n\2\"\37\3\2\2"+
+		"\2\" \3\2\2\2\"!\3\2\2\2#\5\3\2\2\2$(\5\b\5\2%(\5\n\6\2&(\5\f\7\2\'$\3"+
+		"\2\2\2\'%\3\2\2\2\'&\3\2\2\2(\7\3\2\2\2)*\7\4\2\2*+\7\f\2\2+,\7\f\2\2"+
+		",-\7\f\2\2-.\7\f\2\2./\7\r\2\2/\60\7\17\2\2\60;\b\5\1\2\61\62\7\4\2\2"+
+		"\62\63\7\f\2\2\63\64\7\f\2\2\64\65\7\f\2\2\65\66\7\f\2\2\66\67\7\r\2\2"+
+		"\678\7\17\2\289\7\f\2\29;\b\5\1\2:)\3\2\2\2:\61\3\2\2\2;\t\3\2\2\2<=\7"+
+		"\5\2\2=>\7\f\2\2>?\7\f\2\2?@\7\f\2\2@A\7\f\2\2AB\7\r\2\2BC\5\20\t\2CD"+
+		"\b\6\1\2D\13\3\2\2\2EF\7\6\2\2FG\7\f\2\2GH\7\f\2\2HI\b\7\1\2I\r\3\2\2"+
+		"\2JK\7\7\2\2KL\7\f\2\2LM\7\f\2\2MN\b\b\1\2N\17\3\2\2\2OP\7\b\2\2PQ\7\20"+
+		"\2\2QR\7\t\2\2RS\7\20\2\2ST\7\n\2\2TU\b\t\1\2U\21\3\2\2\2VW\7\13\2\2W"+
+		"X\b\n\1\2X\23\3\2\2\2YZ\7\2\2\3Z\25\3\2\2\2\6\35\"\':";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

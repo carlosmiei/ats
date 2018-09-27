@@ -35,7 +35,7 @@ actions: action ';' actions
 
 action: registo
       | login
-//    |logout
+      |logout
 //   | recusar
 //   |solicitar
      ;
@@ -106,6 +106,10 @@ posicao returns [Point2D.Double pos]
               po.setLocation(Double.parseDouble($prim.text),Double.parseDouble($seg.text));
               $pos=po;}
       ;
+
+logout : 'logout' {key=null;cla=null;System.out.println("Log out com sucesso!");}
+        ;
+
 /*
 registar: 'registar condutor' email=STRING nome=STRING pass=STRING data=DATA valor=NUM {
 

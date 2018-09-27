@@ -52,8 +52,7 @@ recusar viagem;
 recusar viagem;
 logout;
 
-registar cliente "ADomingues@mail.google.com" "Argentina Domingues" "Y0uE$C" "Rua Antonio Augusto Anunciacao, 1832, 5130-587 Sao Joao da Pesqueira" 1970-04-12 (68.4, 63.2) ;
-registar cliente "G-fonseca79@mail.google.com" "Garibaldo Fonseca" "E?nOQ" ", 2012, 4930-359 Olivais" 1963-08-18 (80.5, 11.6) ;
+re
 login "g_figueiredo@sapo.pt" "kPfa" ;
 viajar;
 logout;
