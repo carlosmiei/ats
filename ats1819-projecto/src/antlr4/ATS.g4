@@ -12,6 +12,8 @@ grammar ATS;
  Client client;
  Driver driver;
  User user;
+ String key;
+ String cla;
  Point2D.Double start= new Point2D.Double();
 
   private String unquote(String str) {
@@ -32,9 +34,10 @@ actions: action ';' actions
        ;
 
 action: registo
-//     | login
+      | login
 //    |logout
 //   | recusar
+//   |solicitar
      ;
 
 registo:registarCondutor
@@ -74,12 +77,27 @@ registarCliente:'registar cliente' email=STRING name=STRING pass=STRING rua=STRI
                ;
 
 registarEmpresa: 'registar empresa' nome=STRING pass=STRING {
-                boolean regista = umer.registerCompany($nome.text,$pass.text);
-                System.out.println("registou: " + regista);
+
+                     boolean regista = umer.registerCompany($nome.text,$pass.text);
+                     System.out.println("registou: " + regista);
 
 }
             ;
 
+
+login: 'login' nome=STRING pass=STRING {
+
+
+                    String result = umer.loginUmer($nome.text,$pass.text);
+
+                    if (result != null) {
+                       key = $nome.text;
+                       cla = result;
+                       System.out.println("Sucesso no login!");
+
+                    } else {System.out.println("Erro login");}
+}
+      ;
 
 posicao returns [Point2D.Double pos]
       :'(' prim=DECIMAL ',' seg=DECIMAL')' {

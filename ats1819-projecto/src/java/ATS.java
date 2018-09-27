@@ -13,7 +13,8 @@ public class ATS implements Runnable {
 	private Client client;
 	private User user;
 	private Driver driver;
-
+	private String key;
+	private String cla;
 
 	public static void main(String[] args) throws InterruptedException {
 		ATS ats = new ATS();
@@ -38,11 +39,14 @@ public class ATS implements Runnable {
 		ATSLexer lexer = new ATSLexer(input);
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
 		ATSParser parser = new ATSParser(tokens);
+
 		//variaveis
 		parser.umer = umer;
 		parser.client=client;
 		parser.user=user;
 		parser.driver=driver;
+		parser.key=key;
+		parser.cla=cla;
 		//variaveis
 		ParseTree tree = parser.actions();
 		System.out.println("árvore: " + tree.toStringTree(parser));

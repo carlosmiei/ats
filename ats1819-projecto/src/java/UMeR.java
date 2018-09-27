@@ -430,6 +430,30 @@ public class UMeR implements Serializable {
         return closestTaxi;
     }
 
+
+     //adicionado por adminMenu
+     public String loginUmer(String key, String password){
+         User user = this.allUsers().get(key);
+         if (user != null && user.getPassword().equals(password)) {
+             //this.current_user = key;
+             //this.current_class = user.getClass().getSimpleName();
+             return key;
+         }
+         else {
+             Company company = this.getCompanies().get(key);
+             if (company != null && company.getPassword().equals(password)) {
+                 return  company.getClass().getSimpleName();
+             }
+         }
+         if (key.equals("admin") && password.equals("12345")){
+             return "admin";
+         }
+         return null;
+     }
+
+     //adicionado por mim
+
+
     /**
      * Calcula o tempo estimado de um ponto a outro
      * @param start         Ponto de partida
