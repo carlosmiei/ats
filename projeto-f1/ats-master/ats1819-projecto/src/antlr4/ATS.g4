@@ -20,7 +20,7 @@ grammar ATS;
  int contadormatriculas=1;
  Vehicle car;
  Trip trip;
- ArrayList<Trip> viagensSolicitadas;
+ ArrayList<Trip> viagensSolicitadas = new ArrayList<Trip>();
 
   private String unquote(String str) {
     return str.substring(1,str.length()-1);
@@ -57,7 +57,7 @@ action: registo
       | login
 //    |logout
 //   | recusar
-     |solicitar
+    |solicitar
      ;
 
 registo:registarCondutor
@@ -152,13 +152,13 @@ solicitar: 'solicitar' pos=posicao {
                   Client client = umer.getClients().get(key);
                   Trip trip = umer.newTripClosest(client,ponto);
 
-                  if (trip==null) {System.out.println("A VIAGEM VEIO VAZIA");}
+                  if (trip == null) {System.out.println("A VIAGEM VEIO VAZIA");}
                   else {
 
                       System.out.println("IUPI TEMOS VIAGEM");
                       viagensSolicitadas.add(trip);
                       System.out.println(trip.toString());
-                      //
+
                   }
 
 
