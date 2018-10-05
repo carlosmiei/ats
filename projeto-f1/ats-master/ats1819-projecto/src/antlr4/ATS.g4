@@ -165,17 +165,30 @@ solicitar: 'solicitar' pos=posicao {
                 }
                 ;
 viajar: 'viajar' {
-
+            int numA = viagensSolicitadas.size();
             Trip viajar = viajar(key);
+            int numD = viagensSolicitadas.size();
 
             if (viajar==null) {System.out.println("Nao conseguiu viajar, nao tinha viagens!");}
             else {
 
                 umer.addTrip(  viajar.getClient(), viajar.getDriver(), trip.getLicencePlate(),viajar);
+                System.out.println("Numero antes: " + numA + "Numero depois: " + numD);
 
             }
-        }
+         }
         ;
+
+recusar: 'recusar viagem' {
+        int numA = viagensSolicitadas.size();
+        Trip viajar = viajar(key);
+        int numD = viagensSolicitadas.size();
+        if (viajar != null) {
+
+          System.out.println("Viagem removida com sucesso; numero de viagens \n" +"tam antes: " +numA + "tam depois" + numD);
+        }
+
+}
 
 posicao returns [Point2D.Double pos]
       :'(' prim=DECIMAL ',' seg=DECIMAL')' {
