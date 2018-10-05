@@ -1,0 +1,5 @@
+registar condutor "g_figueiredo@sapo.pt" "Gabi Figueiredo" "kPfa" "Rua David Mourao Ferreira, 725, 4435-202 Rio Tinto" 1997-12-05 59  ;
+registar cliente "a.raposo@hotmail.com" "Adamantino Raposo" "hIA?Kp8p" "Rua Egas Moniz, 303, 8200-124 Albufeira" 1973-08-22 (61.3, 8.1) ;
+registar cliente "EvelioTorres@mail.google.com" "Evelio Torres" "4vDNzW781" "Rua Jose Antunes, 1365, 2615-108 Alverca do Ribatejo" 1945-08-06 (75.5, 81.3) ;
+login "EvelioTorres@mail.google.com" "4vDNzW781" ;
+solicitar (56.3, 36.8);
