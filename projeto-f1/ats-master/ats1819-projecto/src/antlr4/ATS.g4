@@ -55,9 +55,11 @@ actions: action ';' actions
 
 action: registo
       | login
-//    |logout
-    | recusar
-    |solicitar
+      |logout
+      | recusar
+      |solicitar
+      | viajar
+      |end
      ;
 
 registo:registarCondutor
@@ -157,7 +159,7 @@ solicitar: 'solicitar' pos=posicao {
 
                       System.out.println("IUPI TEMOS VIAGEM");
                       viagensSolicitadas.add(trip);
-                      System.out.println(trip.toString());
+                    //  System.out.println(trip.toString());
 
                   }
 
@@ -165,6 +167,8 @@ solicitar: 'solicitar' pos=posicao {
                 }
                 ;
 viajar: 'viajar' {
+
+            if (key != null) {
             int numA = viagensSolicitadas.size();
             Trip viajar = viajar(key);
             int numD = viagensSolicitadas.size();
@@ -172,10 +176,16 @@ viajar: 'viajar' {
             if (viajar==null) {System.out.println("Nao conseguiu viajar, nao tinha viagens!");}
             else {
 
+                System.out.println("Cliente: " + viajar.getClient() + "DRIVER: " + viajar.getDriver() + "matricula :" + viajar.getLicencePlate() );
+
+                try{
                 umer.addTrip(  viajar.getClient(), viajar.getDriver(), trip.getLicencePlate(),viajar);
                 System.out.println("Numero antes: " + numA + "Numero depois: " + numD);
+            } catch (Exception e) {System.out.println("EXCEPAO!!" + e);}
 
             }
+          } else {}
+
          }
         ;
 
@@ -211,7 +221,14 @@ posicao returns [Point2D.Double pos]
       ;
 
 
-log : EOF ;
+end : 'EOF' {
+    System.out.println("EXECUTADO!");
+    try{
+      umer.saveUMeR("umerData-tests");
+    } catch(Exception e) {System.out.println("ERRO :!!!!" + e);}
+    }
+
+    ;
 
 /*
  *

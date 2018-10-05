@@ -29,7 +29,7 @@ public class ATS implements Runnable {
 
 	@Override
 	public void run() {
-		String filename = "log1.txt";
+		String filename = "log.txt";
 		CharStream input;
 		try {
 			input = CharStreams.fromFileName(filename);
@@ -53,7 +53,7 @@ public class ATS implements Runnable {
 		parser.trip=trip;
 		//variaveis
 		ParseTree tree = parser.actions();
-		System.out.println("árvore: " + tree.toStringTree(parser));
+		//System.out.println("árvore: " + tree.toStringTree(parser));
 
     try { // guardar o estado do programa
       umer.saveUMeR("umerData-tests");

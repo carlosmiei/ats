@@ -3428,3 +3428,4 @@ logout;
 
 registar cliente "ARibeiro-33@sapo.pt" "Amelia Ribeiro" "KXAs1FFzqD8" "Rua Horacio Rebelo Portela, 300, 4760-039 Vila Nova de Famalicao" 1941-01-19 (56.1, 76.9) ;
 registar condutor "Carolina-sa@gmail.com" "Carolina Sa" "kP/6az9" "Largo Jose Saramago, 2411, 4515-248 Lomba" 1964-08-27 57  "servico taxi longiquo" ;
+EOF;

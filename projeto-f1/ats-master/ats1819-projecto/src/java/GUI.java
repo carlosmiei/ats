@@ -49,7 +49,7 @@ public class GUI extends Application{
     private boolean driverAvailiable = true, noAvailiableTaxis = true;
     private String currentTripDriver;
     private int currentTripId = 0;
-    private String saveFile = "umerData";
+    private String saveFile = "umerData-tests";
 
     private HBox company_hbox;
 
