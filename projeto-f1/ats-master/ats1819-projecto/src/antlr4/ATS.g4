@@ -56,7 +56,7 @@ actions: action ';' actions
 action: registo
       | login
 //    |logout
-//   | recusar
+    | recusar
     |solicitar
      ;
 
@@ -195,6 +195,13 @@ recusar: 'recusar viagem' {
         }
         ;
 
+logout: 'logout' {
+      key=null;
+      cla=null;
+
+}
+      ;
+
 posicao returns [Point2D.Double pos]
       :'(' prim=DECIMAL ',' seg=DECIMAL')' {
 
@@ -202,34 +209,7 @@ posicao returns [Point2D.Double pos]
               po.setLocation(Double.parseDouble($prim.text),Double.parseDouble($seg.text));
               $pos=po;}
       ;
-/*
-registar: 'registar condutor' email=STRING nome=STRING pass=STRING data=DATA valor=NUM {
 
-
-  System.out.println("teste" + $email.text + "pass" + $pass.text + "data" + $data.text+ "valor" +$valor.text);
-
-
-  }
-        ;
-
-/*
-login: 'login' user=STRING pass=STRING {}
-     ;
-
-logout: 'logout'
-      ;
-
-
-recusar: 'recusar viagem'
-       ;
-
-solicitar: 'solicitar' '(' DECIMAL ',' DECIMAL ')'
-         ;
-
-log : EOF  {if (umer==null){System.out.println("ta a null");}  }
-    ;
-
-*/
 
 log : EOF ;
 
