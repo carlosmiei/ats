@@ -158,6 +158,7 @@ solicitar: 'solicitar' pos=posicao {
                       System.out.println("IUPI TEMOS VIAGEM");
                       viagensSolicitadas.add(trip);
                       System.out.println(trip.toString());
+                      //
                   }
 
 
