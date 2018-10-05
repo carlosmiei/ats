@@ -187,6 +187,10 @@ recusar: 'recusar viagem' {
 
                       System.out.println("Viagem removida com sucesso; numero de viagens \n" +"tam antes: " +numA + "tam depois" + numD);
                     }
+                    else {
+                      System.out.println("Nao conseguiu remover, nao tinha viagens!");
+
+                    }
 
         }
         ;
