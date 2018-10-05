@@ -180,15 +180,16 @@ viajar: 'viajar' {
         ;
 
 recusar: 'recusar viagem' {
-        int numA = viagensSolicitadas.size();
-        Trip viajar = viajar(key);
-        int numD = viagensSolicitadas.size();
-        if (viajar != null) {
+                  int numA = viagensSolicitadas.size();
+                  Trip viajar = viajar(key);
+                  int numD = viagensSolicitadas.size();
+                  if (viajar != null) {
 
-          System.out.println("Viagem removida com sucesso; numero de viagens \n" +"tam antes: " +numA + "tam depois" + numD);
+                      System.out.println("Viagem removida com sucesso; numero de viagens \n" +"tam antes: " +numA + "tam depois" + numD);
+                    }
+
         }
-
-}
+        ;
 
 posicao returns [Point2D.Double pos]
       :'(' prim=DECIMAL ',' seg=DECIMAL')' {
