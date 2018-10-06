@@ -179,8 +179,10 @@ viajar: 'viajar' {
                 System.out.println("Cliente: " + viajar.getClient() + "DRIVER: " + viajar.getDriver() + "matricula :" + viajar.getLicencePlate() );
 
                 try{
-                umer.addTrip(  viajar.getClient(), viajar.getDriver(), trip.getLicencePlate(),viajar);
-                System.out.println("Numero antes: " + numA + "Numero depois: " + numD);
+
+
+                  umer.addTrip(  viajar.getClient(), viajar.getDriver(), viajar.getLicencePlate(),viajar);
+                  System.out.println("Numero antes: " + numA + "Numero depois: " + numD);
             } catch (Exception e) {System.out.println("EXCEPAO!!" + e);}
 
             }
