@@ -431,27 +431,27 @@ public class UMeR implements Serializable {
     }
 
 
-     //adicionado por adminMenu
-     public String loginUmer(String key, String password){
+     // Adicionado por adminMenu
+     public String loginUmer(String key, String password) {
          User user = this.allUsers().get(key);
          if (user != null && user.getPassword().equals(password)) {
              //this.current_user = key;
              //this.current_class = user.getClass().getSimpleName();
              return key;
-         }
-         else {
-             Company company = this.getCompanies().get(key);
+         } else {
+			 Company company = this.getCompanies().get(key);
              if (company != null && company.getPassword().equals(password)) {
-                 return  company.getClass().getSimpleName();
+                 return company.getClass().getSimpleName();
              }
          }
-         if (key.equals("admin") && password.equals("12345")){
+         
+		 if (key.equals("admin") && password.equals("12345")) {
              return "admin";
          }
+
          return null;
      }
-
-     //adicionado por mim
+     // Adicionado por mim
 
 
     /**
@@ -645,10 +645,7 @@ public class UMeR implements Serializable {
      * @param v Veículo
      * @param t Viagem
      */
-    public void addTrip(String c, String d, String v, Trip t){
-
-
-        
+    public void addTrip(String c, String d, String v, Trip t) {    
         this.trips.add(t);
         this.clients.get(c).addTrip(t);
         this.allDrivers.get(d).addTrip(t);
@@ -754,5 +751,4 @@ public class UMeR implements Serializable {
         ois.close();
         return u;
     }
-
 }

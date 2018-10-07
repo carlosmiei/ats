@@ -1,4 +1,3 @@
-
 import java.io.IOException;
 import java.io.FileNotFoundException;
 
@@ -8,7 +7,6 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 public class ATS implements Runnable {
-
 	private UMeR umer;
 	private Client client;
 	private User user;
@@ -24,8 +22,8 @@ public class ATS implements Runnable {
 	}
 
 	public ATS() {
-	  umer = new UMeR();
-  }
+		umer = new UMeR();
+  	}
 
 	@Override
 	public void run() {
@@ -42,26 +40,26 @@ public class ATS implements Runnable {
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
 		ATSParser parser = new ATSParser(tokens);
 
-		//variaveis
+		// Variáveis
 		parser.umer = umer;
-		parser.client=client;
-		parser.user=user;
-		parser.driver=driver;
-		parser.key=key;
-		parser.cla=cla;
-		parser.car=car;
-		parser.trip=trip;
-		//variaveis
+		parser.client = client;
+		parser.user = user;
+		parser.driver = driver;
+		parser.key = key;
+		parser.cla = cla;
+		parser.car = car;
+		parser.trip = trip;
+		
+		// Variáveis
 		ParseTree tree = parser.actions();
 		//System.out.println("árvore: " + tree.toStringTree(parser));
 
-    try { // guardar o estado do programa
-      umer.saveUMeR("umerData-tests");
-    } catch (FileNotFoundException e) {
-      System.err.println("ERROR: could not save UMeR data (FileNotFoundException).");
-    } catch (IOException e) {
-      System.err.println("ERROR: could not save UMeR data (IOException).");
-    }
+    	try { // guardar o estado do programa
+      		umer.saveUMeR("umerData-tests");
+   		} catch (FileNotFoundException e) {
+      		System.err.println("ERROR: could not save UMeR data (FileNotFoundException).");
+    	} catch (IOException e) {
+      		System.err.println("ERROR: could not save UMeR data (IOException).");
+    	}
 	}
-
 }
