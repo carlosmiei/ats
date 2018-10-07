@@ -21,7 +21,7 @@ grammar ATS;
  Vehicle car;
  Trip trip;
  ArrayList<Trip> viagensSolicitadas = new ArrayList<Trip>();
-
+int contadorfinal;
   private String unquote(String str) {
     return str.substring(1,str.length()-1);
   }
@@ -157,7 +157,7 @@ solicitar: 'solicitar' pos=posicao {
                   if (trip == null) {System.out.println("A VIAGEM VEIO VAZIA");}
                   else {
 
-                      System.out.println("IUPI TEMOS VIAGEM");
+                      System.out.println(" TEMOS VIAGEM SOLICITADA" + "CONTADOR : " + contadorfinal++);
                       viagensSolicitadas.add(trip);
                     //  System.out.println(trip.toString());
 
@@ -175,7 +175,7 @@ viajar: 'viajar' {
 
             if (viajar==null) {System.out.println("Nao conseguiu viajar, nao tinha viagens!");}
             else {
-
+                System.out.println("CONSEGIU VIAJAR!!");
                 System.out.println("Cliente: " + viajar.getClient() + "DRIVER: " + viajar.getDriver() + "matricula :" + viajar.getLicencePlate() );
 
                 try{
@@ -224,7 +224,7 @@ posicao returns [Point2D.Double pos]
 
 
 end : 'EOF' {
-    System.out.println("EXECUTADO!");
+    System.out.println("EXECUTADO! viagens retidas: " + viagensSolicitadas.size());
     try{
       umer.saveUMeR("umerData-tests");
     } catch(Exception e) {System.out.println("ERRO :!!!!" + e);}

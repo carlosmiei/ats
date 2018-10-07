@@ -93,7 +93,7 @@ public class ATSLexer extends Lexer {
 	 Vehicle car;
 	 Trip trip;
 	 ArrayList<Trip> viagensSolicitadas = new ArrayList<Trip>();
-
+	int contadorfinal;
 	  private String unquote(String str) {
 	    return str.substring(1,str.length()-1);
 	  }

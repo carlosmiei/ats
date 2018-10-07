@@ -102,7 +102,7 @@ public class ATSParser extends Parser {
 	 Vehicle car;
 	 Trip trip;
 	 ArrayList<Trip> viagensSolicitadas = new ArrayList<Trip>();
-
+	int contadorfinal;
 	  private String unquote(String str) {
 	    return str.substring(1,str.length()-1);
 	  }
@@ -645,7 +645,7 @@ public class ATSParser extends Parser {
 			                  if (trip == null) {System.out.println("A VIAGEM VEIO VAZIA");}
 			                  else {
 
-			                      System.out.println("IUPI TEMOS VIAGEM");
+			                      System.out.println(" TEMOS VIAGEM SOLICITADA" + "CONTADOR : " + contadorfinal++);
 			                      viagensSolicitadas.add(trip);
 			                    //  System.out.println(trip.toString());
 
@@ -690,12 +690,14 @@ public class ATSParser extends Parser {
 
 			            if (viajar==null) {System.out.println("Nao conseguiu viajar, nao tinha viagens!");}
 			            else {
-
+			                System.out.println("CONSEGIU VIAJAR!!");
 			                System.out.println("Cliente: " + viajar.getClient() + "DRIVER: " + viajar.getDriver() + "matricula :" + viajar.getLicencePlate() );
 
 			                try{
-			                umer.addTrip(  viajar.getClient(), viajar.getDriver(), trip.getLicencePlate(),viajar);
-			                System.out.println("Numero antes: " + numA + "Numero depois: " + numD);
+
+
+			                  umer.addTrip(  viajar.getClient(), viajar.getDriver(), viajar.getLicencePlate(),viajar);
+			                  System.out.println("Numero antes: " + numA + "Numero depois: " + numD);
 			            } catch (Exception e) {System.out.println("EXCEPAO!!" + e);}
 
 			            }
@@ -854,7 +856,7 @@ public class ATSParser extends Parser {
 			setState(107);
 			match(T__12);
 
-			    System.out.println("EXECUTADO!");
+			    System.out.println("EXECUTADO! viagens retidas: " + viagensSolicitadas.size());
 			    try{
 			      umer.saveUMeR("umerData-tests");
 			    } catch(Exception e) {System.out.println("ERRO :!!!!" + e);}

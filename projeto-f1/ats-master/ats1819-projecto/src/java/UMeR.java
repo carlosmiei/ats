@@ -647,8 +647,8 @@ public class UMeR implements Serializable {
      */
     public void addTrip(String c, String d, String v, Trip t){
 
-       
 
+        
         this.trips.add(t);
         this.clients.get(c).addTrip(t);
         this.allDrivers.get(d).addTrip(t);
