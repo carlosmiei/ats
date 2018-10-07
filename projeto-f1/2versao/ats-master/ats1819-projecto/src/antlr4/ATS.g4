@@ -44,9 +44,10 @@ int contadorfinal;
     Trip remover=null;
     int tam=viagensSolicitadas.size();
 
-            if (tam >0) {
+            if (tam > 0) {
 
-              remover= viagensSolicitadas.remove(tam-1);
+              return viagensSolicitadas.remove(tam-1);
+
             }
             return remover;
   }
@@ -195,9 +196,9 @@ viajar: 'viajar' {
 
 
 
-
+            System.out.println("Tamanho antes de chamar a funcao:" + viagensSolicitadas.size());
             Trip vTemp = viajarQualquer();
-
+            System.out.println("Tamanho depois de chamar a funcao:" + viagensSolicitadas.size());
 
 
             if (vTemp==null) {System.out.println("Nao conseguiu viajar, nao tinha viagens!");}
@@ -207,10 +208,7 @@ viajar: 'viajar' {
                 String matricula = d.getVehicle();
                 Vehicle v = umer.getAllVehicles().get(matricula);
 
-
-
                 Trip vfinal  = umer.newTrip(c,d,v,vTemp.getEnd());
-                //Trip viajar = new Trip (vTemp.getID(),vTemp.getStart(), vTemp.getEnd(),vTemp.getTime(),vTemp.getPrice(),vTemp.getDate(),matricula,key,vTemp.getClient(),vTemp.getRating(),vTemp.getEstimatedTimeToDest(),vTemp.getTaxiPos(),vTemp.getEstimatedTimeToClient(),vTemp.getRealTimeToClient(),vTemp.getEstimatedPrice());
                 umer.addTrip(  vfinal.getClient(), vfinal.getDriver(), vfinal.getLicencePlate(),vfinal);
 
 
@@ -222,7 +220,7 @@ viajar: 'viajar' {
 
 recusar: 'recusar viagem' {
                   int numA = viagensSolicitadas.size();
-                  Trip viajar = viajar(key);
+                  Trip viajar = viajarQualquer();
                   int numD = viagensSolicitadas.size();
                   if (viajar != null) {
 
