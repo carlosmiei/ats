@@ -138,14 +138,7 @@ public class UMeR implements Serializable {
         return newAllVehicles;
     }
 
-	/**
-	 * NOTA: Adicionado para o projeto de ATS (Carlos e Manuel).
-	 * Altera o Map de todos os vehicles.
-	 * @param allVehicles 
-	 */
-	public void setAllVehicles(HashMap<String, Vehicle> allVehicles) {
-		this.allVehicles = allVehicles;
-	}
+
 
     /**
      * Retorna uma cópia da List de trips
@@ -453,7 +446,7 @@ public class UMeR implements Serializable {
                  return company.getClass().getSimpleName();
              }
          }
-         
+
 		 if (key.equals("admin") && password.equals("12345")) {
              return "admin";
          }
@@ -654,7 +647,7 @@ public class UMeR implements Serializable {
      * @param v Veículo
      * @param t Viagem
      */
-    public void addTrip(String c, String d, String v, Trip t) {    
+    public void addTrip(String c, String d, String v, Trip t) {
         this.trips.add(t);
         this.clients.get(c).addTrip(t);
         this.allDrivers.get(d).addTrip(t);

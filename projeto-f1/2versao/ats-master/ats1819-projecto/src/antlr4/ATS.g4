@@ -8,7 +8,7 @@ grammar ATS;
     import java.util.*;
 }
 
-@members 
+@members
 {
     UMeR umer;
     Client client;
@@ -22,7 +22,7 @@ grammar ATS;
     Trip trip;
     ArrayList<Trip> viagensSolicitadas = new ArrayList<Trip>();
     int contadorfinal;
-    
+
     private String unquote(String str) {
         return str.substring(1,str.length()-1);
     }
@@ -30,7 +30,7 @@ grammar ATS;
     private Trip viajar(String key) {
         Trip remover = null;
         int stop = 0;
-        
+
         for (Trip object: viagensSolicitadas) {
             if ((object.getDriver().equals(key)) && stop == 0) {
                 remover = object;
@@ -45,10 +45,10 @@ grammar ATS;
     private Trip viajarQualquer() {
         Trip remover = null;
         int tam = viagensSolicitadas.size();
-        
+
         if (tam > 0)
             return viagensSolicitadas.remove(tam-1);
-        
+
         return remover;
     }
 }
@@ -75,9 +75,10 @@ action : registo
 registo : registarCondutor
         | registarCliente
         | registarEmpresa
+        | registarVeiculo
 ;
 
-registarCondutor : 'registar condutor' email=STRING name=STRING pass=STRING rua=STRING dat=DATA comp=NUM 
+registarCondutor : 'registar condutor' email=STRING name=STRING pass=STRING rua=STRING dat=DATA comp=NUM
 {
     LocalDate localDate = LocalDate.parse($dat.text);
     double value = Double.parseDouble($comp.text);
@@ -92,13 +93,13 @@ registarCondutor : 'registar condutor' email=STRING name=STRING pass=STRING rua=
     umer.registerVehicleP(carro);
     System.out.println("Matricula : " + plate + " reliable: " + reliable + " condutor_ " + $email.text);
     System.out.println("Numero de vehiculos : " + umer.getVehiclesP().size());
-    
+
     // Registar veiculo no condutor
     driver.setVehicle(plate);
     boolean regista = umer.registerUser(driver,company);
     System.out.println("registou:" +regista + "utilizadores:" + umer.getAllDrivers().size());
 }
-| 'registar condutor' email=STRING name=STRING pass=STRING rua=STRING dat=DATA comp=NUM emp=STRING 
+| 'registar condutor' email=STRING name=STRING pass=STRING rua=STRING dat=DATA comp=NUM emp=STRING
 {
     LocalDate localDate = LocalDate.parse($dat.text);
     double value = Double.parseDouble($comp.text);
@@ -123,14 +124,14 @@ registarCondutor : 'registar condutor' email=STRING name=STRING pass=STRING rua=
 }
 ;
 
-registarCliente : 'registar cliente' email=STRING name=STRING pass=STRING rua=STRING dat=DATA p=posicao 
+registarCliente : 'registar cliente' email=STRING name=STRING pass=STRING rua=STRING dat=DATA p=posicao
 {
     LocalDate localDate = LocalDate.parse($dat.text);
     Point2D.Double ponto = $p.pos;
     client = new Client($email.text, $name.text, $pass.text, $rua.text, localDate);
     client.setPosition(ponto);
     boolean regista = umer.registerUser(client, null);
-    System.out.println("registou cliente:" + regista + "utilizadores:" + umer.getClients().size());  
+    System.out.println("registou cliente:" + regista + "utilizadores:" + umer.getClients().size());
 }
 ;
 
@@ -141,78 +142,58 @@ registarEmpresa : 'registar empresa' nome=STRING pass=STRING
 }
 ;
 
-registarCarro : 'registar carro' matricula=STRING preco=NUM pos=posicao emailOwner=STRING
+registarVeiculo : 'registar' tipo=STRING  matricula=STRING rel=NUM pos=posicao emailOwner=STRING
 {
     Point2D.Double ponto = $pos.pos;
- 
-    Vehicle v = new Vehicle();
-    v.setLicencePlate(matricula);
-    v.setPrice(preco);
-    v.setPosition(ponto);
-    v.setOwner(emailOwner);
-    
-    if (umer.getCompanies().containsKey(emailOwner)) {
-        // Adicionar o carro à respetiva empresa e ao total de veículos.
-        umer.registerCompanyVehicle(emailOwner, v);
-    } else if (umer.getAllDrivers().containsKey(emailOwner)) {
-        // Adicionar o carro ao respetivo condutor e ao total de veículos.
-        HashMap<String, Driver> allDrivers = umer.getAllDrivers();
-	
-		Driver d = allDrivers.get(emailOwner);
-        d.setVehicle(matricula);
-       	
-		allDrivers.replace(emailOwner, d);
+    Vehicle v = null;
+    switch ($tipo.text) {
+            case "carro":          v = new Car($matricula.text,Double.parseDouble($rel.text),ponto,$emailOwner.text);
+                     break;
+            case "mota":           v = new Bike($matricula.text,Double.parseDouble($rel.text),ponto,$emailOwner.text);
+                     break;
+            case "carrinha":       v =  new Van($matricula.text,Double.parseDouble($rel.text),ponto,$emailOwner.text);
+                     break;
+            case "helicoptero":    v = new Helicopter($matricula.text,Double.parseDouble($rel.text),ponto,$emailOwner.text);
+                     break;
+            default:
+                  System.out.println("ERROs");
+}
 
-		umer.setAllDrivers(allDrivers);
-    } else {
-        // Email não existente. Adicionar o carro ao total de veículos.
-        HashMap<String, Driver> allVehicles = umer.getAllVehicles();
-		allVehicles.put(matricula, v);
+          //Buscar o condutor_e eliminar veiculo atual
+          Driver d = umer.getAllDrivers().get($emailOwner.text);
+          Vehicle ve = umer.getAllVehicles().get(d.getVehicle());
+          umer.removeVehicle(ve);
 
-		umer.setAllVehicles(allVehicles);
-    }
+          //Adicionar o novo e muda o condutor
+          boolean regista =   umer.registerVehicleP(v);
+          umer.changeDriverVehicle($emailOwner.text,$matricula.text);
+
+          if (regista == false) {System.out.println("Problema ao registar Veiculo");}
 }
 ;
 
-registarCarrinha : 'registar carrinha' matricula=STRING preco=NUM pos=posicao emailCondutor=STRING
-{
-                    
-}
-;
-
-registarMota : 'registar mota' matricula=STRING preco=NUM pos=posicao emailCondutor=STRING
-{
-
-}
-;
-
-registarHeli : 'registar helicoptero' matricula=STRING preco=NUM pos=posicao emailCondutor=STRING
-{
-                
-}
-;
 
 login : 'login' nome=STRING pass=STRING
 {
     String result = umer.loginUmer($nome.text, $pass.text);
-    
+
     if (result != null) {
         key = $nome.text;
         cla = result;
         System.out.println("Sucesso no login!");
-    } else 
+    } else
         System.out.println("Erro login");
 }
 ;
 
 
-solicitar : 'solicitar' pos=posicao 
+solicitar : 'solicitar' pos=posicao
 {
     Point2D.Double ponto = $pos.pos;
     Client client = umer.getClients().get(key);
     Trip trip = umer.newTripClosest(client, ponto);
 
-    if (trip == null) { 
+    if (trip == null) {
         System.out.println("A VIAGEM VEIO VAZIA");
     } else {
         System.out.println(" TEMOS VIAGEM SOLICITADA" + "CONTADOR : " + contadorfinal++);
@@ -222,21 +203,21 @@ solicitar : 'solicitar' pos=posicao
 }
 ;
 
-viajar : 'viajar' 
+viajar : 'viajar'
 {
     if (key != null) {
         System.out.println("Tamanho antes de chamar a funcao:" + viagensSolicitadas.size());
         Trip vTemp = viajarQualquer();
         System.out.println("Tamanho depois de chamar a funcao:" + viagensSolicitadas.size());
-        
+
         if (vTemp == null) {
             System.out.println("Nao conseguiu viajar, nao tinha viagens!");
         } else {
             Client c = umer.getClients().get(vTemp.getClient());
-            Driver d = umer.getAllDrivers().get(key); 
-            
+            Driver d = umer.getAllDrivers().get(key);
+
             if (d == null) System.out.println("condutor esta null");
-            
+
             String matricula = d.getVehicle();
             Vehicle v = umer.getAllVehicles().get(matricula);
 
@@ -252,7 +233,7 @@ recusar : 'recusar viagem'
     int numA = viagensSolicitadas.size();
     Trip viajar = viajarQualquer();
     int numD = viagensSolicitadas.size();
-    
+
     if (viajar != null) {
         System.out.println("Viagem removida com sucesso; numero de viagens \n" +"tam antes: " + numA + "tam depois" + numD);
     } else {
@@ -268,7 +249,7 @@ logout : 'logout'
 }
 ;
 
-posicao returns [Point2D.Double pos] : '(' prim=DECIMAL ',' seg=DECIMAL')' 
+posicao returns [Point2D.Double pos] : '(' prim=DECIMAL ',' seg=DECIMAL')'
 {
     Point2D.Double po = new Point2D.Double();
     po.setLocation(Double.parseDouble($prim.text), Double.parseDouble($seg.text));
@@ -277,7 +258,7 @@ posicao returns [Point2D.Double pos] : '(' prim=DECIMAL ',' seg=DECIMAL')'
 ;
 
 
-end : 'EOF' 
+end : 'EOF'
 {
     System.out.println("EXECUTADO! Viagens Retidas: " + viagensSolicitadas.size());
     try {
