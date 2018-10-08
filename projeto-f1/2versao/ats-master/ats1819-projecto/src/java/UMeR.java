@@ -138,6 +138,15 @@ public class UMeR implements Serializable {
         return newAllVehicles;
     }
 
+	/**
+	 * NOTA: Adicionado para o projeto de ATS (Carlos e Manuel).
+	 * Altera o Map de todos os vehicles.
+	 * @param allVehicles 
+	 */
+	public void setAllVehicles(HashMap<String, Vehicle> allVehicles) {
+		this.allVehicles = allVehicles;
+	}
+
     /**
      * Retorna uma cópia da List de trips
      * @return List de trips

@@ -156,13 +156,20 @@ registarCarro : 'registar carro' matricula=STRING preco=NUM pos=posicao emailOwn
         umer.registerCompanyVehicle(emailOwner, v);
     } else if (umer.getAllDrivers().containsKey(emailOwner)) {
         // Adicionar o carro ao respetivo condutor e ao total de veículos.
-        Driver d = umer.getAllDrivers.get(emailOwner);
+        HashMap<String, Driver> allDrivers = umer.getAllDrivers();
+	
+		Driver d = allDrivers.get(emailOwner);
         d.setVehicle(matricula);
-        
-        umer.getAllDrivers().replace(emailOwner, d);
+       	
+		allDrivers.replace(emailOwner, d);
+
+		umer.setAllDrivers(allDrivers);
     } else {
         // Email não existente. Adicionar o carro ao total de veículos.
-        umer.getAllVehicles().put(matricula, v);
+        HashMap<String, Driver> allVehicles = umer.getAllVehicles();
+		allVehicles.put(matricula, v);
+
+		umer.setAllVehicles(allVehicles);
     }
 }
 ;
@@ -187,7 +194,7 @@ registarHeli : 'registar helicoptero' matricula=STRING preco=NUM pos=posicao ema
 
 login : 'login' nome=STRING pass=STRING
 {
-    String result = umer.loginUmer($nome.text,$pass.text);
+    String result = umer.loginUmer($nome.text, $pass.text);
     
     if (result != null) {
         key = $nome.text;
