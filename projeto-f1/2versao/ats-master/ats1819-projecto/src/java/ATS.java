@@ -27,7 +27,7 @@ public class ATS implements Runnable {
 
 	@Override
 	public void run() {
-		String filename = "log.txt";
+		String filename = "log-tudo.txt";
 		CharStream input;
 		try {
 			input = CharStreams.fromFileName(filename);

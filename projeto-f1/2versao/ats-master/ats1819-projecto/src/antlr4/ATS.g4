@@ -176,7 +176,7 @@ registarVeiculo : 'registar' tipo=VEICULO  matricula=STRING rel=NUM pos=posicao 
 
 registarVeiculoEmpresa : 'registar' tipo=VEICULO  matricula=STRING rel=NUM pos=posicao 'empresa' empresa=STRING
 {
-    System.out.println("ENTREI" + " " + $matricula.text + $rel.text + $empresa.text);
+    //System.out.println("ENTREI" + " " + $matricula.text + $rel.text + $empresa.text);
     Point2D.Double ponto = $pos.pos;
     Vehicle v = null;
     switch ($tipo.text) {
