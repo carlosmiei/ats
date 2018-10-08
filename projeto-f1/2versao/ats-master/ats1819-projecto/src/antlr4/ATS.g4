@@ -151,7 +151,7 @@ registarCarro : 'registar carro' matricula=STRING preco=NUM pos=posicao emailOwn
     v.setPosition(ponto);
     v.setOwner(emailOwner);
     
-    if (umer.getCompanies().containsKey(emailOwner) {
+    if (umer.getCompanies().containsKey(emailOwner)) {
         // Adicionar o carro à respetiva empresa e ao total de veículos.
         umer.registerCompanyVehicle(emailOwner, v);
     } else if (umer.getAllDrivers().containsKey(emailOwner)) {
