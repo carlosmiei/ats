@@ -49,7 +49,7 @@ public class ATS implements Runnable {
 		parser.cla = cla;
 		parser.car = car;
 		parser.trip = trip;
-		
+
 		// Variáveis
 		ParseTree tree = parser.actions();
 		//System.out.println("árvore: " + tree.toStringTree(parser));

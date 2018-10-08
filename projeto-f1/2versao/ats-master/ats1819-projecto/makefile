@@ -70,7 +70,7 @@ umer-run :
 
 # compilação do código java
 $(BYTES) : $(SOURCES) | target/classes
-	javac -cp '$(CLASSPATH)' -d target/classes $^
+	javac  -cp '$(CLASSPATH)' -d target/classes $^
 
 # imagens
 target/classes/images/% : src/resources/images/% | target/classes/images

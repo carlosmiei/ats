@@ -1,0 +1,1 @@
+registar carrinha "98-II-54" 32 (50.3, 75.6) empresa "servico taxi" ;

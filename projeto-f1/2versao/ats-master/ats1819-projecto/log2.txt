@@ -3560,3 +3560,4 @@ solicitar (75.0, 85.1) ;
 logout;
 
 registar cliente "Galiano_V930@hotmail.com" "Galiano Valente" "IGGAEgy;d6" "Estrada Municipal 519, 866, 7050-443 Cabrela" 1974-01-05 (96.0, 62.3) ;
+EOF;
