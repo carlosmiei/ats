@@ -143,66 +143,73 @@ registarEmpresa : 'registar empresa' nome=STRING pass=STRING
 }
 ;
 
-registarVeiculo : 'registar' tipo=VEICULO  matricula=STRING rel=NUM pos=posicao emailOwner=STRING
+registarVeiculo : 'registar' tipo=VEICULO matricula=STRING rel=NUM pos=posicao emailOwner=STRING
 {
     Point2D.Double ponto = $pos.pos;
     Vehicle v = null;
     switch ($tipo.text) {
-            case "carro":          v = new Car($matricula.text,Double.parseDouble($rel.text),ponto,$emailOwner.text);
-                     break;
-            case "mota":           v = new Bike($matricula.text,Double.parseDouble($rel.text),ponto,$emailOwner.text);
-                     break;
-            case "carrinha":       v =  new Van($matricula.text,Double.parseDouble($rel.text),ponto,$emailOwner.text);
-                     break;
-            case "helicoptero":    v = new Helicopter($matricula.text,Double.parseDouble($rel.text),ponto,$emailOwner.text);
-                     break;
-            default:
-                  System.out.println("ERROs");
-}
-          System.out.println("REGISTEI VEICULO" + $tipo.text + "MATRICULA" + $matricula.text);
-          //Buscar o condutor_e eliminar veiculo atual
-          Driver d = umer.getAllDrivers().get($emailOwner.text);
-          Vehicle ve = umer.getAllVehicles().get(d.getVehicle());
-          umer.removeVehicle(ve);
+		case "carro":          
+			v = new Car($matricula.text, Double.parseDouble($rel.text), ponto, $emailOwner.text);
+           	break;
+		case "mota":
+			v = new Bike($matricula.text, Double.parseDouble($rel.text), ponto, $emailOwner.text);
+            break;
+		case "carrinha":       
+			v =  new Van($matricula.text, Double.parseDouble($rel.text), ponto, $emailOwner.text);
+           	break;
+		case "helicoptero":    
+			v = new Helicopter($matricula.text, Double.parseDouble($rel.text), ponto, $emailOwner.text);
+            break;
+		default:
+        	System.out.println("ERROs");
+	}
+	
+	System.out.println("REGISTEI VEICULO" + $tipo.text + "MATRICULA" + $matricula.text);
+	
+	// Buscar o condutor e eliminar veiculo atual
+	Driver d = umer.getAllDrivers().get($emailOwner.text);
+	Vehicle ve = umer.getAllVehicles().get(d.getVehicle());
+	umer.removeVehicle(ve);
 
-          //Adicionar o novo e muda o condutor
-          boolean regista =   umer.registerVehicleP(v);
-          umer.changeDriverVehicle($emailOwner.text,$matricula.text);
-
-          if (regista == false) {System.out.println("Problema ao registar Veiculo");}
+	// Adicionar o novo e muda o condutor
+	boolean regista =  umer.registerVehicleP(v);
+	umer.changeDriverVehicle($emailOwner.text, $matricula.text);
+	
+	if (regista == false)
+		System.out.println("Problema ao registar Veiculo");
 }
 ;
 
 
-registarVeiculoEmpresa : 'registar' tipo=VEICULO  matricula=STRING rel=NUM pos=posicao 'empresa' empresa=STRING
+registarVeiculoEmpresa : 'registar' tipo=VEICULO matricula=STRING rel=NUM pos=posicao 'empresa' empresa=STRING
 {
     //System.out.println("ENTREI" + " " + $matricula.text + $rel.text + $empresa.text);
     Point2D.Double ponto = $pos.pos;
     Vehicle v = null;
     switch ($tipo.text) {
-            case "carro":          v = new Car($matricula.text,Double.parseDouble($rel.text),ponto,$empresa.text);
-                     break;
-            case "mota":           v = new Bike($matricula.text,Double.parseDouble($rel.text),ponto,$empresa.text);
-                     break;
-            case "carrinha":       v = new Van($matricula.text,Double.parseDouble($rel.text),ponto,$empresa.text);
-                     break;
-            case "helicoptero":    v = new Helicopter($matricula.text,Double.parseDouble($rel.text),ponto,$empresa.text);
-                     break;
-            default:
-                  System.out.println("ERROs");
-}
-
-
-
-          //Regista veiculo
-          boolean regista =   umer.registerCompanyVehicle($empresa.text,v);
-
-          if (regista == false) {System.out.println("Problema ao registar Veiculo");}
+		case "carro":
+			v = new Car($matricula.text, Double.parseDouble($rel.text), ponto, $empresa.text);
+			break;
+		case "mota":
+			v = new Bike($matricula.text, Double.parseDouble($rel.text), ponto, $empresa.text);
+			break;
+		case "carrinha":
+			v = new Van($matricula.text, Double.parseDouble($rel.text), ponto, $empresa.text);
+			break;
+		case "helicoptero":
+			v = new Helicopter($matricula.text, Double.parseDouble($rel.text), ponto, $empresa.text);
+			break;
+		default:
+			System.out.println("ERROs");
+	}
+	
+	// Regista veiculo
+	boolean regista = umer.registerCompanyVehicle($empresa.text, v);
+	
+	if (regista == false)
+		System.out.println("Problema ao registar Veiculo");
 }
 ;
-
-
-
 
 
 login : 'login' nome=STRING pass=STRING
@@ -256,7 +263,7 @@ viajar : 'viajar'
             Trip vfinal  = umer.newTrip(c,d,v,vTemp.getEnd());
             umer.addTrip(vfinal.getClient(), vfinal.getDriver(), vfinal.getLicencePlate(), vfinal);
         }
-    } else {}
+    } else { }
 }
 ;
 
@@ -307,7 +314,9 @@ end : 'EOF'
  * TOKENS
  *
  */
+
 VEICULO : [A-Za-z]+ ;
+
 /* Uma String entre aspas */
 STRING : '"' (~[\\"] | '\\' [\\"])* '"' ;
 
